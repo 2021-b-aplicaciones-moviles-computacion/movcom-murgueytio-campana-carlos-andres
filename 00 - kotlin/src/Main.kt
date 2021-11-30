@@ -92,14 +92,42 @@ fun main() {
     println(respuestaMapDos)
 
 
+    //Filter para filtar el arreglo
+    val respuestaFilter: List<Int> = arregloDinamico
+        .filter { valorActual: Int ->
+            val mayoresACinco: Boolean = valorActual > 5
+            return@filter mayoresACinco
+        }
+    val respuestaFilterDos = arregloDinamico.filter{it<=5}
+    println(respuestaFilter)
+    println(respuestaFilterDos)
 
+    val respuestaAny: Boolean = arregloDinamico
+        .any{ valorActual: Int ->
+            return@any (valorActual>5)
+        }
+    println(respuestaAny)
 
+    val respuestaAll: Boolean = arregloDinamico
+        .all{ valorActual: Int ->
+            return@all (valorActual>5)
+        }
+    println(respuestaAll)
 
+    val respuestaReduce: Int = arregloDinamico
+        .reduce{
+            acumulado: Int, valorActual: Int ->
+            return@reduce (acumulado + valorActual)
+        }
+    println(respuestaReduce)
 
-
-
-
-
+    val arregloDanio = arrayListOf<Int>(12,15,8,10)
+    val respuestaReduceFold = arregloDanio
+        .fold(100,
+            { acumulado, valorActualInteracion ->
+                return@fold acumulado - valorActualInteracion
+        })
+    println(respuestaReduceFold)
 
 }
 
@@ -119,5 +147,45 @@ fun calcularsueldo(
         return sueldo * (100/tasa)
     } else {
         return sueldo * (100/tasa) + bonoEspecial
+    }
+}
+
+abstract class NumerosJava{
+    protected val numeroUno: Int
+    private val numeroDos: Int
+    constructor(
+        uno: Int,
+        dos:Int
+    ){
+        numeroUno = uno;
+        numeroDos = dos;
+        println("Inicializar")
+
+    }
+}
+
+abstract class Numeros( //Constructor primario despues de los parentesis
+    val numeroUno: Int,
+    val numeroDos: Int
+){
+    init{
+        println("Inicializar")
+    }
+}
+
+class Suma(
+    uno: Int,
+    dos: Int,
+): Numeros( //El : llama al constructor padre
+    uno,
+    dos
+) {
+    init { // Bloque de codigo del constructor primario
+        this.numeroUno
+        this.numeroDos
+    }
+    fun sumar(): Int {
+        val total: Int = numeroUno + numeroDos
+        return total
     }
 }
