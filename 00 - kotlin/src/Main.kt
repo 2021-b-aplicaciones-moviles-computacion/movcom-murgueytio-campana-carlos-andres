@@ -129,6 +129,27 @@ fun main() {
         })
     println(respuestaReduceFold)
 
+    val ejemploUno = Suma(1,2)
+    val ejemploDos = Suma(null,2)
+    val ejemploTres = Suma(1,null)
+    val ejemploCuatro = Suma(null,null)
+
+    println(ejemploUno.sumar())
+    println(Suma.historialSumas)
+    println(ejemploDos.sumar())
+    println(Suma.historialSumas)
+    println(ejemploTres.sumar())
+    println(Suma.historialSumas)
+    println(ejemploCuatro.sumar())
+    println(Suma.historialSumas)
+    println(Suma.pi)
+    println(Suma.historialSumas)
+
+
+
+
+
+
 }
 
 fun imprimirNombre(nombre:String) :Unit{ //Unit es el void y es opcional
@@ -184,8 +205,75 @@ class Suma(
         this.numeroUno
         this.numeroDos
     }
+
+    constructor(
+        uno: Int?,
+        dos: Int
+    ) : this (
+        if (uno == null) 0 else uno,
+        dos
+    ){
+        //Bloque de codigo del segundo constructor
+    }
+
+    constructor(
+        uno: Int,
+        dos: Int?
+    ) : this(
+        uno,
+        if (dos==null) 0 else dos
+    ){
+        //Bloque codigo tercer constructor
+    }
+
+    constructor(
+        uno: Int?,
+        dos: Int?
+    ) : this (
+        if(uno == null) 0 else uno,
+        if(dos == null) 0 else dos
+    ){
+        //Bloque codigo cuarto constructor
+    }
+
     fun sumar(): Int {
         val total: Int = numeroUno + numeroDos
+        agregarHistorial(total) //aqui llamamos, no es necesario poner this. porque ya sabe donde está
         return total
     }
+
+    //A los companion object se les denomina singleton, es decir solo existe hay una instancia por clase
+    companion object{
+        val pi = 3.14
+        val historialSumas = arrayListOf<Int>()
+
+        fun agregarHistorial(valorNuevaSuma: Int){
+            historialSumas.add(valorNuevaSuma);
+        }
+    }
+
+
+
+
+
+
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
