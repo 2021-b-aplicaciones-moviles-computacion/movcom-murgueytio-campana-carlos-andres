@@ -12,17 +12,25 @@ class MainActivity : AppCompatActivity() {
 
         val botonCicloVida = findViewById<Button>(R.id.btn_ir_ciclo_vida)
         botonCicloVida.setOnClickListener{
-            val intent = Intent(this,ACicloVida::class.java);
-            startActivity(intent)
+            //val intent = Intent(this,ACicloVida::class.java);
+            //startActivity(intent)
+            irActividad(ACicloVida::class.java) //Refactor de lo de arriba
+        }
+
+        val botonListView = findViewById<Button>(R.id.btn_ir_list_view)
+        botonListView.setOnClickListener{
+            //val intent = Intent(this,ACicloVida::class.java);
+            //startActivity(intent)
+            irActividad(BListView::class.java) //Refactor de lo de arriba
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-    }
+    fun irActividad(
+        clase: Class<*>
+    ){
+        val intent = Intent(this,clase)
+        startActivity(intent)
 
-    override fun onResume() {
-        super.onResume()
     }
 
 

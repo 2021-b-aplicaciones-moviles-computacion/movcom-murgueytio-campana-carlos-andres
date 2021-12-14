@@ -3,4 +3,11 @@
     <string name="hola_Mundo">Bienvenidos 2021</string>
     <color name="colorTexto"></color>
     <color name="colorFondo"></color>
+
+    <string-array name="string_array_opciones_dialogo">
+        <item>Lunes</item>
+        <item>Martes</item>
+        <item>Miercoles</item>
+    </string-array>
+
 </resources>
