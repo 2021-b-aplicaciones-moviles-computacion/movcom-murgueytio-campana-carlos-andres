@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hola_Mundo">Prueba portrait  ESP</string>}
+    <color name="colorTexto"> #F7E036 </color>
+    <color name="colorFondo"> #3682F7 </color>
+</resources>

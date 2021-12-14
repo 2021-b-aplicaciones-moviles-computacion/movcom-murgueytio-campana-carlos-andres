@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hola_Mundo">Prueba landscape ESP</string>
+    <color name="colorTexto"> #E434ED </color>
+    <color name="colorFondo"> #3DEEFA </color>
+</resources>

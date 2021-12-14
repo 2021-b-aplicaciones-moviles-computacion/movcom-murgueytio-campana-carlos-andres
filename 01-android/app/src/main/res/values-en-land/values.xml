@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hola_Mundo">Test landscape EN</string>
+    <color name="colorTexto"> #FCF5C7 </color>
+    <color name="colorFondo"> #ADF7B6 </color>
+</resources>
