@@ -1,0 +1,6 @@
+1,1,Spider Man,10.0,15000.0,true,
+2,2,Batman,10.0,30000.0,true,
+3,3,Los Increibles,8.0,25000.0,false,
+4,4,Buscando a Nemo,9.0,25000.0,false,
+5,5,El conjuro,9.0,8000.0,false,
+6,3,asd,5.00,10000.00,false,
