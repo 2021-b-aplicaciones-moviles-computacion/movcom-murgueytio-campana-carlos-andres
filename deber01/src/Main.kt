@@ -1,27 +1,93 @@
 import java.io.*
 import java.text.SimpleDateFormat
 import java.util.*
-import kotlin.collections.ArrayList
+import kotlin.collections.ArrayList as ArrayList
 
 fun main() {
     val txtDirector = "src/director.txt"
     val txtPelicula = "src/pelicula.txt"
-    val scanner = Scanner(System.`in`)
+    val sc = Scanner(System.`in`)
     val listaDirectores = leerDirectores(txtDirector)
     val listaPeliculas = leerPeliculas(txtPelicula)
-    //Create, Read, Update, delete
-    //imprimirDirectores(listaDirectores)
-    //crearDirector(txtDirector, 0,true)
-    //actualizarDirector(listaDirectores,txtDirector)
-    //borrarDirector(listaDirectores,txtDirector)
-
-
-    imprimirPeliculas(listaPeliculas)
-    //crearPelicula(txtPelicula,0,true)
-    borrarPelicula(listaPeliculas,txtPelicula)
-
+    println("ELiga que con que archivo quiere trabajar\n1. Directores \n2.Peliculas\n ->")
+    val opc = sc.nextLine()
+    when (opc) {
+        ("1") -> {
+            println(
+                "Que se va a hacer con el archivo directores?\n" +
+                        "1. Imprimir el contenido del archivo\n" +
+                        "2. Crear un nuevo director\n" +
+                        "3. Actualizar un registro del archivo\n" +
+                        "4. Eliminar un registro del archivo\n" +
+                        "5. Salir del programa"
+            )
+            val opcDir = sc.nextLine()
+            while (opcDir != "5") {
+                when (opcDir) {
+                    ("1") -> {
+                        imprimirDirectores(listaDirectores)
+                        break;
+                    }
+                    ("2") -> {
+                        imprimirDirectores(listaDirectores)
+                        crearDirector(txtDirector, 0, true)
+                        break;
+                    }
+                    ("3") -> {
+                        actualizarDirector(listaDirectores, txtDirector)
+                        break;
+                    }
+                    ("4") -> {
+                        imprimirDirectores(listaDirectores)
+                        borrarDirector(listaDirectores, txtDirector)
+                        break;
+                    }
+                    ("5") -> {
+                        println("Salió del programa")
+                    }
+                }
+            }
+        }
+        ("2") -> {
+            println(
+                "Que se va a hacer con el archivo peliculas?\n" +
+                        "1. Imprimir el contenido del archivo\n" +
+                        "2. Crear una nueva pelicula\n" +
+                        "3. Actualizar un registro del archivo\n" +
+                        "4. Eliminar un registro del archivo\n" +
+                        "5. Salir del programa"
+            )
+            val opcPel = sc.nextLine()
+            while (opcPel != "5") {
+                when (opcPel) {
+                    ("1") -> {
+                        imprimirPeliculas(listaPeliculas)
+                        break;
+                    }
+                    ("2") -> {
+                        imprimirPeliculas(listaPeliculas)
+                        crearPelicula(txtPelicula,0,true)
+                        break;
+                    }
+                    ("3") -> {
+                        actualizarPelicula(listaPeliculas,txtPelicula)
+                        break;
+                    }
+                    ("4") -> {
+                        imprimirPeliculas(listaPeliculas)
+                        borrarPelicula(listaPeliculas,txtPelicula)
+                        break;
+                    }
+                    ("5") -> {
+                        println("Salio del programa")
+                    }
+                }
+            }
+        }
+    }
 }
-fun leerArchivo(nombreArchivo: String):ArrayList<ArrayList<String>>{
+
+fun leerArchivo(nombreArchivo: String): ArrayList<ArrayList<String>> {
     val unItem = ArrayList<String>()
     val variosItem = arrayListOf(ArrayList<String>())
     try{
@@ -90,7 +156,7 @@ fun crearDirector(rutaArchivo: String, idDirector : Int, nuevoDirector: Boolean)
     println("Director registrado con éxito")
 }
 
-fun leerDirectores(archivo:String): ArrayList<Director>{
+fun leerDirectores(archivo:String): ArrayList<Director> {
     val directores = ArrayList<Director>()
     val archivoDirectores = leerArchivo(archivo)
     var str: String?
@@ -101,7 +167,7 @@ fun leerDirectores(archivo:String): ArrayList<Director>{
     return directores
 }
 
-fun buscarDirector(indexColumna: Int, texto:String, archivo: ArrayList<Director>) : ArrayList<Director>{
+fun buscarDirector(indexColumna: Int, texto:String, archivo: ArrayList<Director>) : ArrayList<Director> {
     if(indexColumna == 0){
         return (archivo.filter {
             return@filter (it.getidDirector() == texto.toInt())
@@ -191,7 +257,7 @@ fun imprimirPeliculas(peliculas: ArrayList<Pelicula>){
     }
 }
 
-fun leerPeliculas(archivo:String):ArrayList<Pelicula>{
+fun leerPeliculas(archivo:String): ArrayList<Pelicula> {
     val pelis = ArrayList<Pelicula>()
     val archivoPelis = leerArchivo(archivo)
     var str: String?
@@ -275,38 +341,7 @@ fun actualizarPelicula(peliculas: ArrayList<Pelicula>, rutaArchivo: String){
     println("Pelicula actualizada con éxito")
 }
 
-fun buscar2Pelicula(indexColumna: Int, texto:String, archivo: ArrayList<Pelicula>) : ArrayList<Pelicula>{
-    if(indexColumna == 0){
-        return (archivo.filter {
-            return@filter (it.getidPelicula() == texto.toInt())
-        })as ArrayList<Pelicula>
-    }
-    if(indexColumna == 1){
-        return (archivo.filter {
-            return@filter (it.getidDirector() == texto.toInt())
-        })as ArrayList<Pelicula>
-    }
-    if(indexColumna == 2){
-        return (archivo.filter {
-            return@filter (it.getNombrePelicula() == texto.toString())
-        })as ArrayList<Pelicula>
-    }
-    if(indexColumna == 3){
-        return (archivo.filter {
-            return@filter (it.getValoracionPelicula() == texto.toDouble())
-        })as ArrayList<Pelicula>
-    }
-    if(indexColumna == 4){
-        return (archivo.filter {
-            return@filter (it.getPresupuesto() == texto.toDouble())
-        })as ArrayList<Pelicula>
-    }
-    return (archivo.filter {
-        return@filter (it.getEnCartelera() == texto.toBoolean())
-    })as ArrayList<Pelicula>
-}
-
-fun buscarPelicula(indexColumna: Int, texto:String, archivo: ArrayList<Pelicula>) : ArrayList<Pelicula>{
+fun buscarPelicula(indexColumna: Int, texto:String, archivo: ArrayList<Pelicula>) : ArrayList<Pelicula> {
     if(indexColumna == 0){
         return (archivo.filter {
             return@filter (it.getidPelicula() == texto.toInt())
@@ -350,6 +385,7 @@ fun borrarPelicula(listaPeliculas: ArrayList<Pelicula>, rutaArchivo: String){
     val delete = buscarPelicula(0,id,listaPeliculas)
     delete.forEach{
         idPeli = it.getidPelicula().toString()
+        println("idpeli: ${idPeli}")
         idD = it.getidDirector().toString()
         nombre = it.getNombrePelicula().toString()
         valoracion = it.getValoracionPelicula()
@@ -394,25 +430,3 @@ fun borrarLineaTxt(archivoOrg: String, lineaABorrar: String){
         ex.printStackTrace()
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -24,7 +24,8 @@ class BListView : AppCompatActivity() {
         val adaptador = ArrayAdapter( //El adaptador recibe el contexto (clase), como se va a visualizar y el arreglo
             this,
             android.R.layout.simple_list_item_1,
-            arreglo
+            //arreglo
+            BBaseDatosMemoria.arregloBEntrenador
         )
         listView.adapter = adaptador
         adaptador.notifyDataSetChanged()
@@ -32,7 +33,8 @@ class BListView : AppCompatActivity() {
         val botonAnadirListView = findViewById<Button>(R.id.btn_anadir_list_view)
 
         botonAnadirListView.setOnClickListener{
-            anadirItem(adaptador,arreglo,1)
+            //anadirItem(adaptador,arreglo,1)
+            anadirItem(adaptador,BBaseDatosMemoria.arregloBEntrenador,1)
         }
 
 //        listView.setOnClickListener{
@@ -110,11 +112,15 @@ class BListView : AppCompatActivity() {
 
 
     fun anadirItem(
-        adaptador: ArrayAdapter<Int>,
+        /*adaptador: ArrayAdapter<Int>,
         arreglo: ArrayList<Int>,
+        valor: Int*/
+        adaptador: ArrayAdapter<BEntrenador>,
+        arreglo: ArrayList<BEntrenador>,
         valor: Int
     ){
-        arreglo.add(valor)
+        //arreglo.add(valor)
+        arreglo.add(BEntrenador("otroEntrenador","asd"))
         adaptador.notifyDataSetChanged()
 
     }
