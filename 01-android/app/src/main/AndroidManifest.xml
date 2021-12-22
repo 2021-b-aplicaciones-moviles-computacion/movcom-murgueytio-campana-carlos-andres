@@ -14,7 +14,13 @@
             android:exported="false" />
         <activity
             android:name=".BListView"
-            android:exported="false" />
+            android:exported="true" >//vamos a poner un intent aqui adentro para decir que vamos a uitlizarlo para intent implicitos, osea compartir
+            <intent-filter>
+                <action android:name="andriod.intent.action.SEND"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="text/plain"/>
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ACicloVida"
             android:exported="false" />

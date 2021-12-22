@@ -1,21 +1,22 @@
 package com.example.aplicacion01
 
-class BBaseDatosMemoria() {
+class BBaseDatosMemoria {
     companion object{
         val arregloBEntrenador = arrayListOf<BEntrenador>()
-    }
-    init{
-        arregloBEntrenador
-            .add(
-                BEntrenador("Carlos","a@a.com")
-            )
-        arregloBEntrenador
-            .add(
-                BEntrenador("Jose","a@a.com")
-            )
-        arregloBEntrenador
-            .add(
-                BEntrenador("Daniel","a@a.com")
-            )
+
+        init {
+            arregloBEntrenador
+                .add(
+                    BEntrenador("Adrian", "a@a.com")
+                )
+            arregloBEntrenador
+                .add(
+                    BEntrenador("Vicente", "b@b.com")
+                )
+            arregloBEntrenador
+                .add(
+                    BEntrenador("Carolina", "c@c.com")
+                )
+        }
     }
 }
