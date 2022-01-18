@@ -28,6 +28,43 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        //Base de datos SQLite
+        EBaseDeDatos.TablaUsuario = ESqliteHelperUsuario(this)
+
+        if (EBaseDeDatos!=null){
+            EBaseDeDatos.TablaUsuario?.crearUsuarioFormulario(
+                "Carlos",
+                "Carlos desc"
+            )
+            var consulta = EBaseDeDatos.TablaUsuario?.consultarUsuarioPorId(
+                1
+            )
+            Log.i("bdd", "Primera consulta = ${consulta?.nombre}")
+            EBaseDeDatos.TablaUsuario?.actualizarUsuarioFormulario(
+                "Andres",
+                "Andres desc",
+                1
+            )
+            Log.i("bdd", "Primera consulta = ${consulta?.nombre}")
+            EBaseDeDatos.TablaUsuario?.eliminarUsuarioFormulario(
+                1
+            )
+            Log.i("bdd", "Primera consulta = ${consulta?.nombre}")
+            EBaseDeDatos.TablaUsuario?.consultarUsuarioPorId(
+                1
+            )
+
+        }
+
+        val botonRecycledView = findViewById<Button>(R.id.btn_ir_recycler_view)
+        botonRecycledView.setOnClickListener{
+            //val intent = Intent(this,ACicloVida::class.java);
+            //startActivity(intent)
+            abrirActividadConParametros(GRecyclerView::class.java)
+            //irActividad(ACicloVida::class.java) //Refactor de lo 0de arriba
+        }
+
+
         val botonCicloVida = findViewById<Button>(R.id.btn_ir_ciclo_vida)
         botonCicloVida.setOnClickListener{
             //val intent = Intent(this,ACicloVida::class.java);

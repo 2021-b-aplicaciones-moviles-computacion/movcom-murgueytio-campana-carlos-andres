@@ -10,15 +10,22 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Aplicacion01">
         <activity
+            android:name=".GRecyclerView"
+            android:exported="false" />
+        <activity
             android:name=".CIntentExplicitoParametros"
             android:exported="false" />
         <activity
             android:name=".BListView"
-            android:exported="true" >//vamos a poner un intent aqui adentro para decir que vamos a uitlizarlo para intent implicitos, osea compartir
+            android:exported="true">
+            //vamos a poner un intent aqui adentro para decir que vamos a uitlizarlo para intent
+            implicitos, osea compartir
             <intent-filter>
-                <action android:name="andriod.intent.action.SEND"/>
-                <category android:name="android.intent.category.DEFAULT"/>
-                <data android:mimeType="text/plain"/>
+                <action android:name="andriod.intent.action.SEND" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
         <activity
