@@ -92,7 +92,15 @@ class MainActivity : AppCompatActivity() {
             )
             startActivityForResult(intentConRespuesta, CODIGO_RESPUESTA_INTENT_IMPLICITO)
         }
+
+        val botonHttp = findViewById<Button>(R.id.btn_ir_http)
+        botonHttp.setOnClickListener{
+            abrirActividadConParametros(HttpActivity::class.java)
+        }
+
     }
+
+
 
 
     fun abrirActividadConParametros(

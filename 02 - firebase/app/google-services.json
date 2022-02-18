@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "157814434956",
+    "project_id": "b-camc-moviles",
+    "storage_bucket": "b-camc-moviles.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:157814434956:android:125632c946e27ef2ca5fa9",
+        "android_client_info": {
+          "package_name": "com.example.proyectofirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "157814434956-v6c5qh954in0hc32icr32e49rrr9vknq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSXOK7r3usByVInPdnb9pUhhCkknNtqyc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "157814434956-v6c5qh954in0hc32icr32e49rrr9vknq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

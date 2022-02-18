@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Aplicacion01">
         <activity
+            android:name=".HttpActivity"
+            android:exported="false" />
+        <activity
             android:name=".GRecyclerView"
             android:exported="false" />
         <activity

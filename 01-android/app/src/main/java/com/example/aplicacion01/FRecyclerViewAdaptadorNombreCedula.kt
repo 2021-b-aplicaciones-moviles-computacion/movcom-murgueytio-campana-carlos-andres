@@ -31,6 +31,9 @@ class FRecyclerViewAdaptadorNombreCedula(
         }
 
         fun anadirLike(){
+            this.numeroLikes = this.numeroLikes + 1
+            likesTextView.text = this.numeroLikes.toString()
+            contexto.aumentarTotalLikes()
 
         }
 
@@ -45,6 +48,8 @@ class FRecyclerViewAdaptadorNombreCedula(
                 parent,
                 false
             )
+        return MyViewHolder(itemView)
+
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
