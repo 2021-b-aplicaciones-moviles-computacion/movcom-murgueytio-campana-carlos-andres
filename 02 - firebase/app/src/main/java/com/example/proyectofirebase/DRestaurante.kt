@@ -1,13 +1,19 @@
 package com.example.proyectofirebase
 
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.gms.tasks.Task
+import com.google.firebase.firestore.DocumentSnapshot
+import com.google.firebase.firestore.Query
+import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class DRestaurante : AppCompatActivity() {
+    var query: Query? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_drestaurante)
@@ -31,6 +37,129 @@ class DRestaurante : AppCompatActivity() {
     }
 
     fun consultar(){
+
+        /*
+        val db = Firebase.firestore
+        //Cuando trabajamos con varios documentos
+        val citiesRef = db
+            .collection("cities")
+            .orderBy("population")
+            .limit(2) //Solo tomamos  dos registros
+        /*
+        citiesRef
+            //.document("BJ")
+            .get()
+            .addOnSuccessListener {
+                for (ciudad in it){
+                    Log.i("consultas","${ciudad.data} ${ciudad.id}")
+                }
+
+            }
+            .addOnFailureListener{}
+
+        //Cuando trabajamos con un solo documento
+        val citiesRefUnico = db
+            .collection("cities")
+            //.orderBy("population")
+            //.limit(2) //Solo tomamos  dos registros
+        citiesRefUnico
+            .document("BJ")
+            .get()
+            .addOnSuccessListener {
+                Log.i("consultas","${it.data}")
+            }
+            .addOnFailureListener{}
+           */
+
+        //Buscar por un solo campo
+        citiesRef
+            .whereEqualTo("country","China")
+            .get()
+            .addOnSuccessListener {
+                Log.i("consultas", "${it.documents}")
+                for (ciudad in it){
+                    Log.i("consultas","${ciudad.data}")
+                    Log.i("consultas","${ciudad.id}")
+                }
+            }
+            .addOnFailureListener{}
+
+        //Vamos a buscar por dos o mas elementos con ==
+        citiesRef
+            .whereEqualTo("regions",false)
+            .whereArrayContains("regions", arrayListOf("socal", "norcal"))
+            .get()
+            .addOnSuccessListener {
+                Log.i("consultas", "${it.documents}")
+                for (ciudad in it){
+                    Log.i("consultas","${ciudad.data}")
+                }
+            }
+            .addOnFailureListener{}
+
+        //Buscamos por dos o mas elementos con >= o ==
+        citiesRef
+            .whereEqualTo("regions",true)
+            .whereArrayContains("population", 1000000)
+            .get()
+            .addOnSuccessListener {
+                for (ciudad in it){
+                    Log.i("consultas","== array-contains ${ciudad.data}")
+                }
+            }
+            .addOnFailureListener{}
+
+        //Buscamos por dos o mas elementos con <=
+        citiesRef
+            .whereEqualTo("regions",true)
+            .whereArrayContains("population", 4000000)
+            .orderBy("population",Query.Direction.DESCENDING)
+            .get()
+            .addOnSuccessListener {
+                for (ciudad in it){
+                    Log.i("consultas","== array-contains ${ciudad.data}")
+                }
+            }
+            .addOnFailureListener{}
+        */
+
+        //PAGINACION
+
+        val db = Firebase.firestore
+        val refCities = db
+            .collection("cities")
+            .orderBy("population")
+            .limit(2)
+
+        var tarea: Task<QuerySnapshot>?  = null
+        if(query==null){
+            tarea = refCities.get()
+        } else {
+            tarea = query!!.get()
+        }
+        if (tarea!=null){
+            tarea
+                .addOnSuccessListener { documentSnapshots->
+                    guardarQuery(documentSnapshots, refCities)
+                    for (ciudad in documentSnapshots){
+                        Log.i("consultas", "${ciudad.data}")
+                    }
+                }
+                .addOnFailureListener{
+                    Log.i("consultas", "ERROR: ${it}")
+                }
+
+        }
+    }
+
+    fun guardarQuery(documentSnapshot: QuerySnapshot, refCities: Query){
+        if(documentSnapshot.size()>0){
+            val ultimoDocumento = documentSnapshot.documents[documentSnapshot.size()-1]
+            query = refCities
+                .startAfter(ultimoDocumento)
+        } else {
+
+        }
 
     }
 
@@ -110,7 +239,6 @@ class DRestaurante : AppCompatActivity() {
             "regions" to listOf("jingjinji", "hebei")
         )
         cities.document("BJ").set(data5)
-
     }
 
 

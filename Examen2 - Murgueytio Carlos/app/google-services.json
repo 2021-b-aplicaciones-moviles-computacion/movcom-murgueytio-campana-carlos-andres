@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "501638292861",
+    "project_id": "examen-bbabd",
+    "storage_bucket": "examen-bbabd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:501638292861:android:16c530fcc8ed4b57041814",
+        "android_client_info": {
+          "package_name": "com.example.eamenprueba"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "501638292861-umeeh4ssn019t3nlm3hp51gbpqtvj0fe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCNkihLYTicJVkFQ7VboZ5wg29gDEEGlqM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "501638292861-umeeh4ssn019t3nlm3hp51gbpqtvj0fe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
